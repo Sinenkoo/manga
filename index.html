@@ -14,9 +14,9 @@
       padding: 0;
     }
     .header-container {
-      max-width: 1200px; /* Adjust this width as needed */
-      margin: 0 auto; /* Center the container horizontally */
-      padding: 20px; /* Add padding as needed */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     .header {
@@ -38,7 +38,7 @@
       border-radius: 20px;
       padding: 5px 10px;
       width: 300px;
-      border: 1px solid #fff; /* White border */
+      border: 1px solid #fff;
     }
 
     .search-bar input {
@@ -53,14 +53,17 @@
 
     .search-bar button {
       background: transparent;
-      border: 1px solid #fff; /* White border */
-      color: #fff;
+      border: none;
       cursor: pointer;
-      font-size: 1.2rem;
       margin-left: 10px;
-      padding: 5px 10px; /* Adjust padding as needed */
-      border-radius: 20px; /* Match the input border radius */
+      padding: 0;
     }
+
+    .search-bar img {
+      width: 24px;
+      height: 24px;
+    }
+
     .social-icons {
       display: flex;
       gap: 10px;
@@ -76,7 +79,7 @@
       text-decoration: none;
       color: #fff;
       font-size: 1.2rem;
-      border: 1px solid #fff; /* White border */
+      border: 1px solid #fff;
     }
     .content {
       padding: 20px;
@@ -103,7 +106,7 @@
       display: inline-block;
       background: #e50914;
       padding: 5px 10px;
-      border-radius: 15px; /* Increased value for more rounded corners */
+      border-radius: 15px;
       font-size: 0.9rem;
       font-weight: bold;
       margin-bottom: 10px;
@@ -155,8 +158,8 @@
       border-radius: 20px;
     }
     .schedule-nav .days button {
-      width: 50px; /* Change this value */
-      height: 50px; /* Change this value */
+      width: 50px;
+      height: 50px;
     }
     .schedule-nav button.active {
       background-color: #e50914;
@@ -194,13 +197,77 @@
     .manga-item img {
       width: 100%;
       border-radius: 10px;
-      height: 300px; /* Set a fixed height for all images */
-      object-fit: cover; /* Ensure images cover the area */
+      height: 300px;
+      object-fit: cover;
     }
     .manga-item h3 {
       margin-top: 10px;
       font-size: 1.2rem;
       text-align: center;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .manga-item:hover .overlay {
+      opacity: 1;
+    }
+    .chapter-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .chapter-buttons button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .chapter-buttons button.chapter-button {
+      font-weight: bold;
+    }
+    .chapter-buttons button.contour-button {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .chapter-buttons button.contour-button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+    .manga-lib-button {
+      background-color: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+    }
+    .manga-lib-button:hover {
+      background-color: #e50914;
+      color: #fff;
     }
   </style>
 </head>
@@ -210,7 +277,7 @@
     <div class="logo">DEAD INSIDE TEAM</div>
     <div class="search-bar">
       <input type="text" placeholder="Поиск">
-      <button>🔍</button>
+      <button><img src="https://cdn-icons-png.flaticon.com/128/3991/3991270.png" alt="Поиск"></button>
     </div>
     <div class="social-icons">
       <a href="#"><span>Г</span></a>
@@ -226,8 +293,8 @@
     <div class="news-text">
       <div class="tag">Новинка</div>
       <h2>Гениальная новинка?</h2>
-      <p>Новый тайтл от студии, создавшей «Всеведующего читателя»</p>
-      <p>Загадочное сообщение пришло ко мне в тот же день, когда нас постиг конец света и началась игра на выживание. Башня, которая заставляет людей не доверять друг другу, провоцирует драки и ведет человечество к уничтожению.</p>
+      <p>Новый тайтл от студии, создавшей «Всеведущего читателя»</p>
+      <p>Загадочное сообщение пришло ко мне в тот же день, когда нас постиг конец света и началась игра на выживание. Башня, которая заставляет людей не доверять друг другу, является жёстким испытанием, в котором не может быть ни одного победителя, только один из них сможет достичь самого верха. Но так ли это на самом деле?</p>
     </div>
   </div>
   <div class="schedule">
@@ -248,40 +315,126 @@
   <div class="manga-list">
     <div class="manga-item">
       <img src="https://imgur.com/eprc8oo.png" alt="Мир после падения">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Мир после падения</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/me3IhsF.png" alt="Возвращение героя максимального уровня">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Возвращение героя максимального уровня</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/pvd9HFj.png" alt="Голубая шкатулка">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Голубая шкатулка</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/9xusVvr.png" alt="Драконы руин">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Драконы Рури (Сериализация)</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/AToU0Qc.png" alt="Любовное агентство">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Любовное агентство</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/RkMZv19.png" alt="Пинокка Девата">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Пиковая Девятка</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/OFldJhD.png" alt="Ради моего братишки">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>Ради моего брошенного любимого</h3>
     </div>
     <div class="manga-item">
       <img src="https://imgur.com/nMNChvC.png" alt="У Коми-сан проблемы с общением">
+      <div class="overlay">
+        <div class="chapter-buttons">
+          <button class="chapter-button">147 Глава</button>
+          <button class="contour-button">б</button>
+          <button class="chapter-button">148 Глава</button>
+          <button class="contour-button">в</button>
+          <button class="chapter-button">149 Глава</button>
+          <button class="contour-button">г</button>
+        </div>
+        <button class="manga-lib-button">На MangaLib</button>
+      </div>
       <h3>У Коми-сан проблемы с общением.</h3>
     </div>
   </div>
 </div>
-
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.schedule-nav .days button');
@@ -296,4 +449,3 @@
 </script>
 </body>
 </html>
-
